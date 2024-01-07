@@ -5,6 +5,6 @@ namespace Domain.Models.Cars
 {
     public class Car : Brand
     {
-        public required SteeringWheel SteeringWheel { get; set; }
+        public required Sparepart Sparepart { get; set; }
     }
 }

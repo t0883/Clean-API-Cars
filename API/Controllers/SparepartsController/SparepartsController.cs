@@ -1,4 +1,5 @@
-﻿using Domain.Models.Spareparts;
+﻿using Domain.Models.Cars;
+using Domain.Models.Spareparts;
 using Infrastructure.Database.SqlDatabase;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,12 +24,14 @@ namespace API.Controllers.SparepartsController
         {
             var brand = await _sqlServer.Brands.Where(b => b.BrandName == steeringWheel.BrandName).FirstOrDefaultAsync();
 
-            var steeringWheelToCreate = new SteeringWheel { BrandId = brand.BrandId, BrandName = brand.BrandName, SteeringWheelHeater = steeringWheel.SteeringWheelHeater, SteeringWheelSize = steeringWheel.SteeringWheelSize };
+            //var steeringWheelToCreate = new SteeringWheel { SteeringWheelId = Guid.NewGuid(), BrandId = brand.BrandId, BrandName = brand.BrandName, SteeringWheelHeater = steeringWheel.SteeringWheelHeater, SteeringWheelSize = steeringWheel.SteeringWheelSize };
+
+            var spareparts = new Sparepart { SteeringWheel = new SteeringWheel { SteeringWheelId = Guid.NewGuid(), BrandId = brand.BrandId, BrandName = brand.BrandName, SteeringWheelHeater = steeringWheel.SteeringWheelHeater, SteeringWheelSize = steeringWheel.SteeringWheelSize } };
 
 
+            var car = new Car { BrandName = brand.BrandName, BrandId = brand.BrandId, Sparepart = spareparts };
 
-
-            return Ok(steeringWheelToCreate);
+            return Ok(car);
         }
 
     }
