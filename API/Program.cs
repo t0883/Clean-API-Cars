@@ -1,4 +1,5 @@
 
+using Infrastructure;
 using Infrastructure.Database.SqlDatabase;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,8 @@ namespace API
                 option.UseSqlServer(connectionString, b => b.MigrationsAssembly("Infrastructure"));
             });
             builder.Services.AddControllers();
+
+            builder.Services.AddInfrastructure();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
