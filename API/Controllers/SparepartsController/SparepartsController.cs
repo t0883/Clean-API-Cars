@@ -1,5 +1,4 @@
-﻿using Domain.Models.Cars;
-using Domain.Models.Spareparts;
+﻿using Domain.Models.Spareparts;
 using Infrastructure.Database.SqlDatabase;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +13,7 @@ namespace API.Controllers.SparepartsController
     {
 
         private readonly SqlServer _sqlServer;
+
         public SparepartsController(SqlServer sqlServer)
         {
             _sqlServer = sqlServer;
@@ -29,9 +29,9 @@ namespace API.Controllers.SparepartsController
             var spareparts = new Sparepart { SteeringWheel = new SteeringWheel { SteeringWheelId = Guid.NewGuid(), BrandId = brand.BrandId, BrandName = brand.BrandName, SteeringWheelHeater = steeringWheel.SteeringWheelHeater, SteeringWheelSize = steeringWheel.SteeringWheelSize } };
 
 
-            var car = new Car { BrandName = brand.BrandName, BrandId = brand.BrandId, Sparepart = spareparts };
+            //var car = new Car { BrandName = brand.BrandName, BrandId = brand.BrandId, Sparepart = spareparts };
 
-            return Ok(car);
+            return Ok(spareparts);
         }
 
     }
