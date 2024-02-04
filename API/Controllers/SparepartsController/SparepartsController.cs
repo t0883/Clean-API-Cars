@@ -22,11 +22,11 @@ namespace API.Controllers.SparepartsController
         [HttpPost]
         public async Task<IActionResult> AddSteeringWheel([FromBody] SteeringWheel steeringWheel)
         {
-            var brand = await _sqlServer.Brands.Where(b => b.BrandName == steeringWheel.BrandName).FirstOrDefaultAsync();
+            var brand = await _sqlServer.Brands.Where(b => b.BrandName == steeringWheel.Brand.BrandName).FirstOrDefaultAsync();
 
             //var steeringWheelToCreate = new SteeringWheel { SteeringWheelId = Guid.NewGuid(), BrandId = brand.BrandId, BrandName = brand.BrandName, SteeringWheelHeater = steeringWheel.SteeringWheelHeater, SteeringWheelSize = steeringWheel.SteeringWheelSize };
 
-            var spareparts = new Sparepart { SteeringWheel = new SteeringWheel { SteeringWheelId = Guid.NewGuid(), BrandId = brand.BrandId, BrandName = brand.BrandName, SteeringWheelHeater = steeringWheel.SteeringWheelHeater, SteeringWheelSize = steeringWheel.SteeringWheelSize } };
+            var spareparts = new Sparepart { SteeringWheel = new SteeringWheel { SteeringWheelId = Guid.NewGuid(), Brand = brand, SteeringWheelHeater = steeringWheel.SteeringWheelHeater, SteeringWheelSize = steeringWheel.SteeringWheelSize } };
 
 
             //var car = new Car { BrandName = brand.BrandName, BrandId = brand.BrandId, Sparepart = spareparts };
